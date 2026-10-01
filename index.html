@@ -7,126 +7,214 @@
 <meta name="description" content="Denada's D&D Hairsalon — cuts, colour and styling for everyone, in the heart of Northfield, Birmingham. Book your appointment today." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#fdf6f6; --ink:#2b1f22; --muted:#7a686c;
-    --accent:#c9758a; --accent2:#d8b26a; --card:#ffffff; --line:#f2e2e5;
+    --paper:#fbf6f0; --paper2:#f4e9e4; --ink:#241a1d; --muted:#6f5f63;
+    --rose:#a6445d; --rose-dk:#8a3249; --blush:#efd3d8; --gold:#b8923f; --gold-dk:#85651f; --line:#e6d5d0;
+    --serif:'Playfair Display',Georgia,serif; --sans:'Jost',system-ui,sans-serif;
+    --gutter:clamp(20px,5vw,56px);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  body{font-family:'Inter',sans-serif; background:var(--bg); color:var(--ink); line-height:1.65;}
-  h1,h2,h3{font-family:'Playfair Display',serif;}
-  .wrap{max-width:1140px; margin:0 auto; padding:0 24px;}
+  html{-webkit-text-size-adjust:100%;}
+  body{font-family:var(--sans); font-weight:400; font-size:17px; background:var(--paper); color:var(--ink); line-height:1.65; overflow-x:clip;}
+  h1,h2,h3{font-family:var(--serif); font-weight:600; line-height:1.12; letter-spacing:-.01em;}
   a{color:inherit;}
   img{display:block; max-width:100%;}
-  .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease;}
+  svg{flex:none;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 var(--gutter);}
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease;}
   .reveal.in{opacity:1; transform:none;}
-  .topbar{background:var(--ink); color:#f4e9ea; font-size:14px;}
-  .topbar__inner{display:flex; justify-content:space-between; align-items:center; padding:8px 24px; flex-wrap:wrap; gap:8px;}
-  .topbar a{color:var(--accent2); font-weight:600; text-decoration:none;}
-  header{position:sticky; top:0; background:rgba(253,246,246,.95); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); z-index:30; transition:box-shadow .3s;}
-  header.scrolled{box-shadow:0 8px 24px rgba(43,31,34,.1);}
-  .header__inner{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; position:relative;}
-  .brand{font-size:24px; font-weight:800; text-decoration:none;}
-  .brand span{color:var(--accent);}
-  nav ul{list-style:none; display:flex; gap:28px;}
-  nav a{text-decoration:none; font-weight:600; font-size:15px;}
-  .burger{display:none; flex-direction:column; gap:4px; background:none; border:0; cursor:pointer; padding:6px;}
-  .burger span{width:24px; height:2px; background:var(--ink);}
-  .mobile-menu{display:none; position:absolute; top:100%; left:0; right:0; background:var(--card); border-bottom:1px solid var(--line); flex-direction:column; padding:12px 24px;}
-  .mobile-menu.open{display:flex;}
-  .mobile-menu a{padding:12px 0; text-decoration:none; font-weight:600; border-bottom:1px solid var(--line);}
-  .btn{display:inline-block; padding:12px 26px; border-radius:999px; font-weight:700; text-decoration:none; font-size:15px; border:none; cursor:pointer; transition:transform .2s, background .2s;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1; transform:none; transition:none;}}
+
+  /* shared editorial bits */
+  .eyebrow{display:flex; align-items:center; gap:14px; font-size:12px; font-weight:500; letter-spacing:.24em; text-transform:uppercase; color:var(--gold-dk); margin-bottom:22px;}
+  .eyebrow::before{content:""; width:44px; height:1px; background:var(--gold);}
+  .section{padding:clamp(72px,10vw,132px) 0;}
+  .section__title{font-size:clamp(34px,5.2vw,60px); margin-bottom:18px;}
+  .section__title em{font-style:italic; font-weight:500; color:var(--rose);}
+  .lede{color:var(--muted); font-size:19px; max-width:34ch; font-weight:300;}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:16px 32px; font:500 13px/1 var(--sans); letter-spacing:.18em; text-transform:uppercase; text-decoration:none; border:1px solid transparent; cursor:pointer; transition:background .25s,color .25s,border-color .25s,transform .25s;}
   .btn:hover{transform:translateY(-2px);}
-  .btn--accent{background:var(--accent); color:#fff;}
-  .btn--accent:hover{background:#b45f75;}
-  .btn--light{background:#fff; color:var(--accent);}
-  .hero{position:relative; min-height:78vh; display:flex; align-items:center; color:#fff; overflow:hidden;}
-  .hero::before{content:"";position:absolute; inset:0; background:url('https://images.pexels.com/photos/7195805/pexels-photo-7195805.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;}
-  .hero::after{content:"";position:absolute; inset:0; background:linear-gradient(120deg, rgba(43,31,34,.82) 20%, rgba(43,31,34,.35) 80%);}
-  .hero__inner{position:relative; z-index:2; max-width:560px; padding:80px 24px;}
-  .hero__tag{display:inline-block; background:rgba(255,255,255,.15); color:#fff; font-weight:700; font-size:13px; padding:6px 16px; border-radius:999px; margin-bottom:20px; letter-spacing:.03em; border:1px solid rgba(255,255,255,.3);}
-  .hero h1{font-size:clamp(32px,5vw,54px); line-height:1.15; margin-bottom:18px;}
-  .hero h1 em{color:var(--accent2); font-style:italic;}
-  .hero p{margin-bottom:30px; font-size:18px; color:#f2e6e8;}
-  .hero__actions{display:flex; gap:16px; flex-wrap:wrap;}
-  section{padding:70px 24px;}
-  .section__head{text-align:center; max-width:600px; margin:0 auto 44px;}
-  .section__head h2{font-size:clamp(26px,4vw,38px); margin-bottom:12px;}
-  .section__head p{color:var(--muted);}
-  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px;}
-  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:30px; text-align:center; box-shadow:0 4px 20px rgba(43,31,34,.04); transition:transform .25s, box-shadow .25s;}
-  .card:hover{transform:translateY(-6px); box-shadow:0 20px 40px -16px rgba(43,31,34,.18);}
-  .card .icon{font-size:32px; margin-bottom:14px;}
-  .card h3{font-size:20px; margin-bottom:8px;}
-  .card p{color:var(--muted); font-size:15px;}
-  .price{font-weight:700; color:var(--accent); margin-top:10px; display:block; font-family:'Inter',sans-serif;}
-  .gallery{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
-  .gallery img{aspect-ratio:1; border-radius:14px; object-fit:cover; width:100%; height:100%; transition:transform .3s;}
-  .gallery img:hover{transform:scale(1.04);}
-  .owner{display:grid; grid-template-columns:220px 1fr; gap:36px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:24px; padding:36px; max-width:760px; margin:0 auto;}
-  .owner img{border-radius:18px; aspect-ratio:1; object-fit:cover; width:100%;}
-  .owner blockquote{font-family:'Playfair Display',serif; font-size:20px; line-height:1.5; margin-bottom:14px;}
-  .owner .who{color:var(--accent); font-weight:700; font-size:14px; font-family:'Inter',sans-serif;}
-  .reviews{background:#f7e6e9;}
-  .review-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px;}
-  .review{background:#fff; border-radius:16px; padding:24px; transition:transform .25s;}
-  .review:hover{transform:translateY(-4px);}
-  .stars{color:var(--accent2); letter-spacing:2px; margin-bottom:10px;}
-  .review p{font-size:15px; margin-bottom:14px;}
-  .review .who{display:flex; align-items:center; gap:10px; font-weight:700; font-size:14px; color:var(--muted);}
-  .avatar{width:32px; height:32px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; font-family:'Playfair Display',serif;}
-  .rating-badge{display:inline-flex; align-items:center; gap:10px; background:#fff; border-radius:999px; padding:10px 20px; font-weight:700; margin-bottom:20px;}
-  .faq{max-width:760px; margin:0 auto;}
-  .faq details{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 22px; margin-bottom:14px;}
-  .faq summary{cursor:pointer; font-weight:700; font-family:'Playfair Display',serif; font-size:17px; list-style:none;}
+  .btn--solid{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .btn--solid:hover{background:var(--rose); border-color:var(--rose);}
+  .btn--line{background:transparent; color:var(--ink); border-color:var(--ink);}
+  .btn--line:hover{background:var(--ink); color:var(--paper);}
+  .btn--gold{background:var(--gold); color:#1d1517; border-color:var(--gold);}
+  .btn--gold:hover{background:#cba653; border-color:#cba653;}
+  .ico{width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;}
+  a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--rose); outline-offset:3px;}
+
+  /* top bar + header */
+  .topbar{background:var(--ink); color:#eadfdc; font-size:13px; letter-spacing:.04em;}
+  .topbar__inner{display:flex; justify-content:space-between; align-items:center; padding-top:9px; padding-bottom:9px; flex-wrap:wrap; gap:4px 20px;}
+  .topbar a{color:#e2bf72; font-weight:500; text-decoration:none; display:inline-flex; align-items:center; gap:8px; padding:4px 0;}
+  header{position:sticky; top:0; background:rgba(251,246,240,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); z-index:30; transition:box-shadow .3s;}
+  header.scrolled{box-shadow:0 10px 30px -14px rgba(36,26,29,.25);}
+  .header__inner{display:flex; align-items:center; justify-content:space-between; padding-top:18px; padding-bottom:18px; position:relative;}
+  .brand{font-family:var(--serif); font-size:25px; font-weight:600; text-decoration:none; letter-spacing:-.01em; white-space:nowrap;}
+  .brand span{font-style:italic; color:var(--rose); font-weight:500;}
+  nav ul{list-style:none; display:flex; gap:40px;}
+  nav a{text-decoration:none; font-weight:500; font-size:12.5px; letter-spacing:.2em; text-transform:uppercase; padding:6px 0; background:linear-gradient(var(--gold),var(--gold)) 0 100%/0 1px no-repeat; transition:background-size .3s;}
+  nav a:hover{background-size:100% 1px;}
+  .burger{display:none; flex-direction:column; gap:6px; background:none; border:0; cursor:pointer; padding:10px; margin-right:-10px;}
+  .burger span{width:26px; height:1.5px; background:var(--ink);}
+  .mobile-menu{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); flex-direction:column; padding:8px var(--gutter) 18px;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:16px 0; text-decoration:none; font-family:var(--serif); font-size:22px; border-bottom:1px solid var(--line);}
+
+  /* hero: asymmetric split */
+  .hero{padding:clamp(40px,5vw,64px) 0 clamp(56px,6vw,88px); overflow:hidden;}
+  .hero__grid{display:grid; grid-template-columns:1.12fr .88fr; gap:clamp(40px,7vw,104px); align-items:center;}
+  .hero h1{font-size:clamp(46px,5.6vw,80px); line-height:1.02; letter-spacing:-.025em; margin-bottom:30px;}
+  .hero h1 em{display:block; font-style:italic; font-weight:500; color:var(--rose); padding-left:.6em;}
+  .hero__copy p.intro{font-size:clamp(18px,1.8vw,21px); color:var(--muted); font-weight:300; max-width:44ch; margin-bottom:38px;}
+  .hero__actions{display:flex; gap:14px; flex-wrap:wrap;}
+  .hero__figure{position:relative; margin:0 0 22px 22px; justify-self:end; width:100%; max-width:480px;}
+  .hero__figure::before{content:""; position:absolute; inset:22px -22px -22px 22px; background:var(--blush); z-index:0;}
+  .hero__figure::after{content:""; position:absolute; inset:-14px 14px 14px -14px; border:1px solid var(--gold); z-index:2; pointer-events:none;}
+  .hero__figure img{position:relative; z-index:1; width:100%; aspect-ratio:4/5; max-height:72vh; object-fit:cover;}
+  .hero__stamp{position:absolute; z-index:3; left:-36px; bottom:48px; background:var(--paper); padding:16px 22px; font-family:var(--serif); font-style:italic; font-size:17px; line-height:1.3; border:1px solid var(--line); box-shadow:0 18px 40px -22px rgba(36,26,29,.5);}
+  .hero__stamp b{display:block; font:500 11px/1 var(--sans); letter-spacing:.22em; text-transform:uppercase; font-style:normal; color:var(--gold-dk); margin-bottom:8px;}
+
+  /* services: printed menu */
+  .menu-section{background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .menu-layout{display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(40px,7vw,110px); align-items:start;}
+  .menu-head{position:sticky; top:120px;}
+  .menu{list-style:none; border-top:1px solid var(--gold);}
+  .menu__item{padding:30px 0; border-bottom:1px solid var(--line);}
+  .menu__row{display:flex; align-items:baseline; gap:14px;}
+  .menu__name{font-family:var(--serif); font-size:clamp(22px,2.6vw,29px); font-weight:600; letter-spacing:-.01em;}
+  .menu__lead{flex:1; min-width:20px; border-bottom:2px dotted var(--gold); transform:translateY(-5px); opacity:.8;}
+  .menu__price{font-family:var(--serif); font-style:italic; font-size:clamp(18px,2vw,22px); color:var(--rose); white-space:nowrap;}
+  .menu__detail{margin-top:8px; max-width:52ch; color:var(--muted); font-size:16px; font-weight:300;}
+  .menu-note{margin-top:28px; font-family:var(--serif); font-style:italic; color:var(--muted); font-size:17px; max-width:52ch; padding-left:18px; border-left:1px solid var(--gold);}
+
+  /* gallery: broken mosaic */
+  .gallery-section{background:var(--paper2);}
+  .gallery-head{display:flex; justify-content:space-between; align-items:end; gap:32px; flex-wrap:wrap; margin-bottom:clamp(36px,5vw,64px);}
+  .gallery-head .lede{max-width:38ch;}
+  .gallery{display:grid; grid-template-columns:repeat(12,1fr); grid-auto-rows:clamp(110px,14vw,190px); gap:clamp(10px,1.6vw,20px);}
+  .gallery img{width:100%; height:100%; object-fit:cover;}
+  .gallery img:nth-child(1){grid-column:1 / span 5; grid-row:1 / span 3;}
+  .gallery img:nth-child(2){grid-column:6 / span 4; grid-row:1 / span 2;}
+  .gallery img:nth-child(3){grid-column:10 / span 3; grid-row:1 / span 3;}
+  .gallery img:nth-child(4){grid-column:6 / span 4; grid-row:3 / span 2;}
+  .gallery img:nth-child(1),.gallery img:nth-child(3){margin-top:0;}
+
+  /* owner */
+  .owner{display:grid; grid-template-columns:.7fr 1.3fr; gap:clamp(36px,7vw,100px); align-items:center;}
+  .owner__figure{position:relative; margin:0 22px 22px 0; max-width:420px;}
+  .owner__figure::before{content:""; position:absolute; inset:22px -22px -22px 22px; border:1px solid var(--gold);}
+  .owner__figure img{position:relative; width:100%; aspect-ratio:4/5; object-fit:cover;}
+  .owner h2{font-size:clamp(14px,1.2vw,15px); font-family:var(--sans); font-weight:500; letter-spacing:.24em; text-transform:uppercase; color:var(--gold-dk); margin-bottom:26px; display:flex; align-items:center; gap:14px;}
+  .owner h2::before{content:""; width:44px; height:1px; background:var(--gold);}
+  .owner blockquote{font-family:var(--serif); font-size:clamp(28px,4vw,50px); line-height:1.2; font-weight:500; letter-spacing:-.015em; margin-bottom:28px; text-indent:-.45em;}
+  .owner .who{font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--rose); font-weight:500;}
+
+  /* reviews: ruled columns */
+  .reviews{background:var(--ink); color:#f0e6e3;}
+  .reviews .eyebrow{color:#e2bf72;}
+  .reviews .eyebrow::before{background:#e2bf72;}
+  .reviews .section__title{color:#fff;}
+  .reviews .lede{color:#cdbdbb;}
+  .reviews__head{margin-bottom:clamp(40px,6vw,72px);}
+  .review-grid{display:grid; grid-template-columns:repeat(3,1fr);}
+  .review{padding:8px clamp(20px,3vw,44px) 8px 0; margin-right:clamp(20px,3vw,44px); border-right:1px solid rgba(226,191,114,.35);}
+  .review:last-child{border-right:0; margin-right:0; padding-right:0;}
+  .review::before{content:"\201C"; display:block; font-family:var(--serif); font-size:84px; line-height:.7; color:#e2bf72; margin-bottom:14px;}
+  .stars{color:#e2bf72; letter-spacing:4px; font-size:14px; margin-bottom:16px;}
+  .review p{font-family:var(--serif); font-size:clamp(19px,1.9vw,23px); line-height:1.4; font-style:italic; font-weight:500; color:#fff; margin-bottom:22px;}
+  .review .who{display:flex; align-items:center; gap:12px; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; color:#cdbdbb;}
+  .avatar{width:34px; height:34px; border-radius:50%; border:1px solid #e2bf72; color:#e2bf72; display:flex; align-items:center; justify-content:center; font-size:14px; font-family:var(--serif); letter-spacing:0;}
+
+  /* faq */
+  .faq-layout{display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(40px,7vw,110px); align-items:start;}
+  .faq{border-top:1px solid var(--gold);}
+  .faq details{border-bottom:1px solid var(--line); padding:6px 0;}
+  .faq summary{cursor:pointer; font-family:var(--serif); font-weight:600; font-size:clamp(19px,2vw,23px); list-style:none; padding:18px 40px 18px 0; position:relative; line-height:1.25;}
   .faq summary::-webkit-details-marker{display:none;}
-  .faq summary::after{content:"+"; float:right; font-size:22px; color:var(--accent);}
-  .faq details[open] summary::after{content:"–";}
-  .faq p{margin-top:12px; color:var(--muted); font-size:15px; font-family:'Inter',sans-serif;}
-  .map-contact{display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:900px; margin:0 auto;}
-  .map-contact iframe{width:100%; height:100%; min-height:260px; border:0; border-radius:16px;}
-  .cta-band{background:var(--ink); color:#f4e9ea; text-align:center;}
-  .cta-band h2{color:#fff; margin-bottom:14px;}
-  .cta-band p{color:#d8c6c9; margin-bottom:26px;}
-  footer{background:var(--ink); color:#d8c6c9; padding:40px 24px 90px; text-align:center; font-size:14px;}
-  footer a{color:var(--accent2); text-decoration:none;}
-  .sticky-cta{position:fixed; bottom:0; left:0; right:0; background:var(--ink); padding:12px 20px; display:none; justify-content:center; gap:12px; z-index:40; box-shadow:0 -8px 24px rgba(0,0,0,.2);}
-  .sticky-cta a{flex:1; text-align:center; max-width:280px;}
+  .faq summary::after{content:""; position:absolute; right:4px; top:50%; width:12px; height:12px; border-right:1.5px solid var(--rose); border-bottom:1.5px solid var(--rose); transform:translateY(-70%) rotate(45deg); transition:transform .3s;}
+  .faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg);}
+  .faq p{padding:0 40px 20px 0; color:var(--muted); font-weight:300; font-size:17px; max-width:56ch;}
+
+  /* cta band */
+  .cta-band{background:var(--blush); text-align:center; padding:clamp(72px,9vw,120px) 0; position:relative;}
+  .cta-band .wrap{max-width:820px;}
+  .cta-band .eyebrow{justify-content:center;}
+  .cta-band .eyebrow::after{content:""; width:44px; height:1px; background:var(--gold);}
+  .cta-band h2{font-size:clamp(40px,7vw,84px); margin-bottom:18px;}
+  .cta-band h2 em{font-style:italic; font-weight:500; color:var(--rose);}
+  .cta-band p{color:#5b4a4e; margin:0 auto 34px; max-width:40ch; font-size:19px; font-weight:300;}
+
+  /* contact */
+  .contact-head{display:flex; justify-content:space-between; align-items:end; gap:28px; flex-wrap:wrap; margin-bottom:clamp(36px,5vw,64px);}
+  .booking{display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,6vw,90px); margin-bottom:clamp(56px,8vw,100px);}
+  .booking__col{border-top:1px solid var(--gold); padding-top:26px;}
+  .booking h3{font-size:clamp(24px,2.6vw,32px); margin-bottom:14px;}
+  .booking p{color:var(--muted); font-weight:300;}
+  .booking .btn{margin:24px 0 18px;}
+  .booking ul{list-style:none; margin:4px 0 18px;}
+  .booking li{position:relative; padding:12px 0 12px 26px; border-bottom:1px dotted var(--gold); color:var(--ink); font-weight:300;}
+  .booking li::before{content:""; position:absolute; left:2px; top:1.35em; width:9px; height:1px; background:var(--gold); box-shadow:0 0 0 0 transparent;}
+  .location-link{display:inline-block; padding:10px 0; font-weight:500; font-size:13px; letter-spacing:.16em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--gold); color:var(--ink);}
+  .location-link:hover{color:var(--rose);}
+  .map-contact{display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(32px,6vw,90px); align-items:stretch;}
+  .map-frame{position:relative; margin:0 22px 22px 0; min-height:340px;}
+  .map-frame::before{content:""; position:absolute; inset:22px -22px -22px 22px; background:var(--blush);}
+  .map-frame iframe{position:relative; width:100%; height:100%; min-height:340px; border:0; display:block; background:var(--paper2);}
+  .visit h3{font-size:clamp(24px,2.6vw,32px); margin-bottom:6px; display:flex; align-items:center; gap:12px;}
+  .visit h3 .ico{color:var(--gold-dk); width:22px; height:22px;}
+  .visit__block{border-top:1px solid var(--gold); padding:24px 0 28px;}
+  .visit p{color:var(--muted); font-weight:300;}
+  .hours-list{margin-top:14px;}
+  .hours-list div{display:flex; align-items:baseline; gap:12px; padding:8px 0;}
+  .hours-list dt{font-weight:400;}
+  .hours-list div::after{content:""; order:1; flex:1; border-bottom:2px dotted var(--gold); opacity:.7; transform:translateY(-4px); min-width:12px;}
+  .hours-list dd{order:2; font-family:var(--serif); font-style:italic; color:var(--rose); text-align:right;}
+
+  footer{background:var(--ink); color:#cdbdbb; padding:48px 0 56px; text-align:center; font-size:14px; letter-spacing:.06em;}
+  footer .brand{display:inline-block; color:#fff; margin-bottom:12px;}
+  footer .brand span{color:#e2bf72;}
+  .sticky-cta{position:fixed; bottom:0; left:0; right:0; background:var(--ink); padding:10px 16px; display:none; justify-content:center; gap:10px; z-index:40; box-shadow:0 -10px 30px rgba(0,0,0,.25);}
+  .sticky-cta .btn{flex:1; max-width:280px; padding:15px 12px; font-size:12px;}
+  .sticky-cta .btn--line{color:#fff; border-color:rgba(255,255,255,.6);}
+
+  @media(max-width:980px){
+    .menu-layout,.faq-layout{grid-template-columns:1fr;}
+    .menu-head{position:static;}
+    .review-grid{grid-template-columns:1fr;}
+    .review{border-right:0; margin-right:0; padding:0 0 32px; margin-bottom:32px; border-bottom:1px solid rgba(226,191,114,.35);}
+    .review:last-child{border-bottom:0; margin-bottom:0; padding-bottom:0;}
+    .map-contact{grid-template-columns:1fr;}
+  }
   @media(max-width:820px){
     nav{display:none;}
     .burger{display:flex;}
-    .gallery{grid-template-columns:repeat(2,1fr);}
-    .owner{grid-template-columns:1fr; text-align:center;}
-    .owner img{max-width:180px; margin:0 auto;}
-    .map-contact{grid-template-columns:1fr;}
-    .sticky-cta{display:flex;}
-    footer{padding-bottom:100px;}
-  }
-  .price-list{width:100%; max-width:860px; margin:0 auto; border-collapse:collapse; background:var(--card); text-align:left;}
-  .price-list th,.price-list td{padding:20px; border-bottom:1px solid var(--line); vertical-align:top;}
-  .price-list thead th{font-size:14px;}
-  .price-list tbody th{font-weight:600;}
-  .price-list .service-detail{display:block; margin-top:6px; font-weight:400; font-size:14px; color:var(--muted);}
-  .price-list td{white-space:nowrap; font-weight:600; text-align:right;}
-  .price-list thead th:last-child{text-align:right;}
-  .content-note{font-size:14px; color:var(--muted); margin-top:18px;}
-  .services-note{max-width:860px; margin:20px auto 0;}
-  .booking{display:grid; grid-template-columns:1fr 1fr; gap:28px; max-width:900px; margin:0 auto 32px;}
-  .booking .card{text-align:left;}
-  .booking .booking-phone{display:block; margin:20px 0 12px; padding:18px 24px; text-align:center; font-size:18px;}
-  .booking-phone span{display:block; font-size:24px;}
-  .booking ul{padding-left:20px; margin:14px 0;}
-  .booking li+li{margin-top:10px;}
-  .hours-list{margin-top:12px; text-align:left;}
-  .hours-list div{display:flex; justify-content:space-between; gap:16px; padding:8px 0; border-bottom:1px solid var(--line);}
-  .hours-list dd{text-align:right;}
-  .location-link{display:inline-block; margin-top:16px; padding:10px 0; font-weight:600;}
-  .owner h2{margin-bottom:12px;}
-  @media(max-width:600px){
+    .hero__grid{grid-template-columns:1fr;}
+    .hero__figure{justify-self:center; margin:0 22px 22px 0; max-width:420px;}
+    .hero__figure img{aspect-ratio:4/4.6;}
+    .hero__stamp{left:-8px; bottom:30px;}
+    .owner{grid-template-columns:1fr;}
+    .owner__figure{max-width:340px;}
     .booking{grid-template-columns:1fr;}
-    .price-list th,.price-list td{padding:16px 12px;}
-    .booking .card{padding:24px;}
+    .sticky-cta{display:flex;}
+    footer{padding-bottom:104px;}
+    .gallery{grid-auto-rows:clamp(90px,24vw,170px);}
+    .gallery img:nth-child(1){grid-column:1 / span 7; grid-row:1 / span 3;}
+    .gallery img:nth-child(2){grid-column:8 / span 5; grid-row:1 / span 2;}
+    .gallery img:nth-child(3){grid-column:8 / span 5; grid-row:3 / span 2;}
+    .gallery img:nth-child(4){grid-column:1 / span 7; grid-row:4 / span 2;}
+  }
+  @media(max-width:480px){
+    body{font-size:16px;}
+    .hero h1 em{padding-left:.5em;}
+    .btn{padding:15px 22px;}
+    .hero__actions .btn{flex:1 1 100%;}
+    .menu__item{padding:24px 0;}
+    .menu__row{gap:10px;}
+    .menu__detail{font-size:15.5px;}
+    .brand{font-size:22px;}
   }
 </style>
 </head>
@@ -138,7 +226,7 @@
     <p>Walk-ins welcome — booking recommended for weekends</p>
     <!-- /PLACEHOLDER -->
     <!-- PLACEHOLDER: verified salon phone number needed (dummy tel link) -->
-    <a href="tel:+441210000001">📞 Book by phone</a>
+    <a href="tel:+441210000001"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Book by phone</a>
     <!-- /PLACEHOLDER -->
   </div>
 </div>
@@ -165,57 +253,66 @@
 </header>
 
 <section class="hero" id="top">
-  <div class="hero__inner">
-    <span class="hero__tag">YOUR LOCAL HAIR SALON · NORTHFIELD</span>
-    <h1>Look good.<br><em>Feel</em> even better.</h1>
-    <p>A little time for your hair, close to home. Welcome to Denada's D&amp;D Hairsalon, an independent salon in Northfield, Birmingham.</p>
-    <div class="hero__actions">
-      <a href="#contact" class="btn btn--accent">Book an Appointment</a>
-      <a href="#services" class="btn btn--light">Services &amp; Prices</a>
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow">Independent hair salon · Northfield</p>
+      <h1>Look good.<em>Feel even better.</em></h1>
+      <p class="intro">A little time for your hair, close to home. Welcome to Denada's D&amp;D Hairsalon, an independent salon in Northfield, Birmingham.</p>
+      <div class="hero__actions">
+        <a href="#contact" class="btn btn--solid">Book an Appointment</a>
+        <a href="#services" class="btn btn--line">Services &amp; Prices</a>
+      </div>
     </div>
+    <figure class="hero__figure">
+      <img src="https://images.pexels.com/photos/7195805/pexels-photo-7195805.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Backwash chairs in a bright salon" width="900" height="1200" />
+      <figcaption class="hero__stamp"><b>Northfield</b>Cut, colour &amp; care</figcaption>
+    </figure>
   </div>
 </section>
 
-<section id="services">
-  <div class="wrap">
-    <div class="section__head reveal">
-      <h2>Services &amp; Prices</h2>
-      <p>Something for every hair type and occasion.</p>
+<section id="services" class="section menu-section">
+  <div class="wrap menu-layout">
+    <div class="menu-head reveal">
+      <p class="eyebrow">The menu</p>
+      <h2 class="section__title">Services <em>&amp;</em> Prices</h2>
+      <p class="lede">Something for every hair type and occasion.</p>
     </div>
-    <table class="price-list reveal">
-      <thead><tr><th scope="col">Service</th><th scope="col">Price</th></tr></thead>
-      <tbody>
+    <div class="reveal">
+      <ul class="menu">
         <!-- PLACEHOLDER: confirm cuts and trims price and description -->
-        <tr><th scope="row">Cuts &amp; Trims<span class="service-detail">Denada looks at your face shape and how you actually style your hair day-to-day — not just what looks good in the chair.</span></th><td>From £18</td></tr>
+        <li class="menu__item"><div class="menu__row"><span class="menu__name">Cuts &amp; Trims</span><span class="menu__lead" aria-hidden="true"></span><span class="menu__price">From £18</span></div><p class="menu__detail">Denada looks at your face shape and how you actually style your hair day-to-day — not just what looks good in the chair.</p></li>
         <!-- /PLACEHOLDER -->
         <!-- PLACEHOLDER: confirm colour and highlights price and description -->
-        <tr><th scope="row">Colour &amp; Highlights<span class="service-detail">Balayage, full colour or a subtle refresh — always patch-tested first, never rushed to fit a tight slot.</span></th><td>From £45</td></tr>
+        <li class="menu__item"><div class="menu__row"><span class="menu__name">Colour &amp; Highlights</span><span class="menu__lead" aria-hidden="true"></span><span class="menu__price">From £45</span></div><p class="menu__detail">Balayage, full colour or a subtle refresh — always patch-tested first, never rushed to fit a tight slot.</p></li>
         <!-- /PLACEHOLDER -->
         <!-- PLACEHOLDER: confirm styling and treatments price and description -->
-        <tr><th scope="row">Styling &amp; Treatments<span class="service-detail">The keratin treatment regulars book before big events — worth asking about if winter's been rough on your hair.</span></th><td>From £25</td></tr>
+        <li class="menu__item"><div class="menu__row"><span class="menu__name">Styling &amp; Treatments</span><span class="menu__lead" aria-hidden="true"></span><span class="menu__price">From £25</span></div><p class="menu__detail">The keratin treatment regulars book before big events — worth asking about if winter's been rough on your hair.</p></li>
         <!-- /PLACEHOLDER -->
         <!-- PLACEHOLDER: confirm special occasion price and description -->
-        <tr><th scope="row">Special Occasion<span class="service-detail">Bridal mornings for whole wedding parties — one stylist per chair so nobody's left waiting around.</span></th><td>From £40</td></tr>
+        <li class="menu__item"><div class="menu__row"><span class="menu__name">Special Occasion</span><span class="menu__lead" aria-hidden="true"></span><span class="menu__price">From £40</span></div><p class="menu__detail">Bridal mornings for whole wedding parties — one stylist per chair so nobody's left waiting around.</p></li>
         <!-- /PLACEHOLDER -->
         <!-- PLACEHOLDER: confirm extensions price and description -->
-        <tr><th scope="row">Extensions<span class="service-detail">Colour-matched and fitted in one visit, with aftercare advice so they actually last past the first wash.</span></th><td>From £80</td></tr>
+        <li class="menu__item"><div class="menu__row"><span class="menu__name">Extensions</span><span class="menu__lead" aria-hidden="true"></span><span class="menu__price">From £80</span></div><p class="menu__detail">Colour-matched and fitted in one visit, with aftercare advice so they actually last past the first wash.</p></li>
         <!-- /PLACEHOLDER -->
         <!-- PLACEHOLDER: confirm men's grooming price and description -->
-        <tr><th scope="row">Men's Grooming<span class="service-detail">Fades, skin fades and beard shaping — same precision as the women's chairs, just quicker in and out.</span></th><td>From £15</td></tr>
+        <li class="menu__item"><div class="menu__row"><span class="menu__name">Men's Grooming</span><span class="menu__lead" aria-hidden="true"></span><span class="menu__price">From £15</span></div><p class="menu__detail">Fades, skin fades and beard shaping — same precision as the women's chairs, just quicker in and out.</p></li>
         <!-- /PLACEHOLDER -->
-      </tbody>
-    </table>
-    <!-- PLACEHOLDER: confirm consultation, patch-test and children-welcome policies -->
-    <p class="content-note services-note">Colour is always preceded by a consultation and a patch test, and children are welcome in the chair.</p>
-    <!-- /PLACEHOLDER -->
+      </ul>
+      <!-- PLACEHOLDER: confirm consultation, patch-test and children-welcome policies -->
+      <p class="menu-note">Colour is always preceded by a consultation and a patch test, and children are welcome in the chair.</p>
+      <!-- /PLACEHOLDER -->
+    </div>
   </div>
 </section>
 
-<section id="gallery" style="background:#f7e6e9;">
+<section id="gallery" class="section gallery-section">
   <div class="wrap">
-    <div class="section__head reveal">
-      <h2>A Proper Pamper</h2>
-      <p>A relaxed, bright space where nobody is hurried out of the chair.</p>
+    <div class="gallery-head reveal">
+      <div>
+        <p class="eyebrow">The space</p>
+        <h2 class="section__title" style="margin-bottom:0;">A Proper <em>Pamper</em></h2>
+      </div>
+      <p class="lede">A relaxed, bright space where nobody is hurried out of the chair.</p>
     </div>
     <div class="gallery reveal">
       <img src="https://images.pexels.com/photos/7195805/pexels-photo-7195805.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Backwash chairs in a salon" loading="lazy" />
@@ -226,10 +323,12 @@
   </div>
 </section>
 
-<section id="owner">
+<section id="owner" class="section">
   <div class="wrap">
     <div class="owner reveal">
-      <img src="https://images.pexels.com/photos/8834019/pexels-photo-8834019.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hairstylist smiling in a salon" loading="lazy" />
+      <figure class="owner__figure">
+        <img src="https://images.pexels.com/photos/8834019/pexels-photo-8834019.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hairstylist smiling in a salon" loading="lazy" />
+      </figure>
       <div>
         <!-- PLACEHOLDER: confirm Denada is the owner and approve the owner quote -->
         <h2>A Word from Denada</h2>
@@ -241,31 +340,33 @@
   </div>
 </section>
 
-<section id="reviews" class="reviews">
+<section id="reviews" class="section reviews">
   <div class="wrap">
-    <div class="section__head reveal">
-      <h2>What Locals Say</h2>
-      <p>Kind words from people who've sat in the chair.</p>
+    <div class="reviews__head reveal">
+      <p class="eyebrow">In their words</p>
+      <h2 class="section__title">What Locals <em>Say</em></h2>
+      <p class="lede">Kind words from people who've sat in the chair.</p>
     </div>
     <div class="review-grid">
       <!-- PLACEHOLDER: replace with real Google reviews -->
-      <div class="review reveal"><div class="stars">★★★★★</div><p>"Booked in for a colour and it came out exactly how I hoped. Really relaxed atmosphere too."</p><div class="who"><span class="avatar">J</span> Jess, Local regular</div></div>
+      <div class="review reveal"><div class="stars" aria-label="5 stars">★★★★★</div><p>"Booked in for a colour and it came out exactly how I hoped. Really relaxed atmosphere too."</p><div class="who"><span class="avatar">J</span> Jess, Local regular</div></div>
       <!-- /PLACEHOLDER -->
       <!-- PLACEHOLDER: replace with real Google reviews -->
-      <div class="review reveal"><div class="stars">★★★★★</div><p>"My kids' cuts, my cuts, everyone's cuts — this is our family salon now."</p><div class="who"><span class="avatar">P</span> Priya, Local regular</div></div>
+      <div class="review reveal"><div class="stars" aria-label="5 stars">★★★★★</div><p>"My kids' cuts, my cuts, everyone's cuts — this is our family salon now."</p><div class="who"><span class="avatar">P</span> Priya, Local regular</div></div>
       <!-- /PLACEHOLDER -->
       <!-- PLACEHOLDER: replace with real Google reviews -->
-      <div class="review reveal"><div class="stars">★★★★★</div><p>"Booked for my wedding morning and they made it completely stress-free."</p><div class="who"><span class="avatar">S</span> Sophie, Local regular</div></div>
+      <div class="review reveal"><div class="stars" aria-label="5 stars">★★★★★</div><p>"Booked for my wedding morning and they made it completely stress-free."</p><div class="who"><span class="avatar">S</span> Sophie, Local regular</div></div>
       <!-- /PLACEHOLDER -->
     </div>
   </div>
 </section>
 
-<section id="faq">
-  <div class="wrap">
-    <div class="section__head reveal">
-      <h2>Common Questions</h2>
-      <p>Everything you might want to know before booking.</p>
+<section id="faq" class="section">
+  <div class="wrap faq-layout">
+    <div class="reveal">
+      <p class="eyebrow">Before you book</p>
+      <h2 class="section__title">Common <em>Questions</em></h2>
+      <p class="lede">Everything you might want to know before booking.</p>
     </div>
     <div class="faq reveal">
       <!-- PLACEHOLDER: confirm walk-in policy -->
@@ -289,30 +390,34 @@
 
 <section class="cta-band">
   <div class="wrap reveal">
-    <h2>Ready to book?</h2>
+    <p class="eyebrow">Your chair is waiting</p>
+    <h2>Ready to <em>book?</em></h2>
     <p>Call or drop by — appointments fill up fast on weekends.</p>
     <!-- PLACEHOLDER: verified salon phone number needed (dummy tel link) -->
-    <a href="tel:+441210000001" class="btn btn--accent">📞 Call to Book</a>
+    <a href="tel:+441210000001" class="btn btn--solid"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call to Book</a>
     <!-- /PLACEHOLDER -->
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" class="section">
   <div class="wrap">
-    <div class="section__head reveal">
-      <h2>Contact &amp; Booking</h2>
-      <p>Book your appointment at Denada's D&amp;D Hairsalon in Northfield.</p>
+    <div class="contact-head reveal">
+      <div>
+        <p class="eyebrow">Find your appointment</p>
+        <h2 class="section__title" style="margin-bottom:0;">Contact <em>&amp;</em> Booking</h2>
+      </div>
+      <p class="lede">Book your appointment at Denada's D&amp;D Hairsalon in Northfield.</p>
     </div>
     <div class="booking reveal">
-      <div class="card">
+      <div class="booking__col">
         <h3>Call to Book</h3>
         <p>Talk through your hair plans and ask about available appointments.</p>
         <!-- PLACEHOLDER: verified salon phone number needed (dummy tel link) -->
-        <a href="tel:+441210000001" class="btn btn--accent booking-phone">📞 <span>Call to Book</span></a>
+        <a href="tel:+441210000001" class="btn btn--solid booking-phone"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Call to Book</span></a>
         <!-- /PLACEHOLDER -->
-        <a href="#visit" class="location-link">Location &amp; opening hours →</a>
+        <br><a href="#visit" class="location-link">Location &amp; opening hours →</a>
       </div>
-      <div class="card">
+      <div class="booking__col">
         <h3>What to Tell Us When You Call</h3>
         <ul>
           <li>The service you would like and your preferred days or times.</li>
@@ -324,40 +429,45 @@
         <p>Before confirming, check the total price, appointment length and anything you need to do beforehand.</p>
       </div>
     </div>
-  </div>
-  <div class="wrap map-contact reveal" id="visit">
-    <iframe src="https://maps.google.com/maps?q=Northfield,+Birmingham&z=15&output=embed" loading="lazy" title="Map to Denada's D&D Hairsalon"></iframe>
-    <div class="grid" style="grid-template-columns:1fr;">
-      <div class="card">
-        <h3>🕒 Opening Hours</h3>
-        <!-- PLACEHOLDER: real opening hours needed -->
-        <dl class="hours-list">
-          <div><dt>Monday</dt><dd>Closed</dd></div>
-          <div><dt>Tuesday–Saturday</dt><dd>9am – 5:30pm</dd></div>
-          <div><dt>Sunday</dt><dd>Closed</dd></div>
-        </dl>
-        <!-- /PLACEHOLDER -->
+    <div class="map-contact reveal" id="visit">
+      <div class="map-frame">
+        <iframe src="https://maps.google.com/maps?q=Northfield,+Birmingham&z=15&output=embed" loading="lazy" title="Map to Denada's D&D Hairsalon"></iframe>
       </div>
-      <div class="card">
-        <h3>📍 Visit Denada's D&amp;D</h3>
-        <p>Northfield, Birmingham</p>
-        <!-- PLACEHOLDER: verified salon street address and postcode needed; directions link currently targets Northfield generally -->
-        <a class="location-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Northfield%2C%20Birmingham" target="_blank" rel="noopener">Get directions ↗</a>
-        <!-- /PLACEHOLDER -->
+      <div class="visit">
+        <div class="visit__block">
+          <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Opening Hours</h3>
+          <!-- PLACEHOLDER: real opening hours needed -->
+          <dl class="hours-list">
+            <div><dt>Monday</dt><dd>Closed</dd></div>
+            <div><dt>Tuesday–Saturday</dt><dd>9am – 5:30pm</dd></div>
+            <div><dt>Sunday</dt><dd>Closed</dd></div>
+          </dl>
+          <!-- /PLACEHOLDER -->
+        </div>
+        <div class="visit__block">
+          <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Visit Denada's D&amp;D</h3>
+          <p>Northfield, Birmingham</p>
+          <!-- PLACEHOLDER: verified salon street address and postcode needed; directions link currently targets Northfield generally -->
+          <a class="location-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Northfield%2C%20Birmingham" target="_blank" rel="noopener">Get directions ↗</a>
+          <!-- /PLACEHOLDER -->
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>&copy; 2026 Denada's D&amp;D Hairsalon, Northfield, Birmingham.</p>
+  <div class="wrap">
+    <a class="brand" href="#top">Denada's <span>D&amp;D</span></a>
+    <p>&copy; 2026 Denada's D&amp;D Hairsalon, Northfield, Birmingham.</p>
+  </div>
 </footer>
 
 <div class="sticky-cta">
   <!-- PLACEHOLDER: verified salon phone number needed (dummy tel link) -->
-  <a href="tel:+441210000001" class="btn btn--accent">📞 Call to Book</a>
+  <a href="tel:+441210000001" class="btn btn--gold"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call to Book</a>
   <!-- /PLACEHOLDER -->
-  <a href="#visit" class="btn btn--light" style="border:2px solid #fff;">📍 Find Us</a>
+  <a href="#visit" class="btn btn--line"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Find Us</a>
 </div>
 
 <script>
