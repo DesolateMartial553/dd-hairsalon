@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw=' 'sha256-9tJyOo9K+GXThaEt5Ko75+531gz647tue51xinz7sQk=' 'sha256-sru/SvUk8RaVCf5qe0uxRsbvdNHlHtJE5vq06+sV4ow='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src https://maps.google.com https://www.google.com; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-gAIMlo4uHwea7LDSu/hGhLXHg8Iu/WQoVQvXGVLwabA=' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw=' 'sha256-9tJyOo9K+GXThaEt5Ko75+531gz647tue51xinz7sQk=' 'sha256-sru/SvUk8RaVCf5qe0uxRsbvdNHlHtJE5vq06+sV4ow='; style-src 'self' 'sha256-c43uYwRoysgy/3OFbc7Y914tuMrN/O6agZJTOZ8W1Vc=' 'sha256-jVP3TqPYm1Jo6lyNB1OkwkkWLBxr2xC77zDfnrxhNAE='; img-src 'self' data:; font-src 'self'; frame-src https://maps.google.com https://www.google.com; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
+<script>if (window.top !== window.self) { try { window.top.location.replace(window.self.location.href); } catch (e) { document.documentElement.hidden = true; } }</script>
 <title>Denada's D&amp;D Hairsalon | Hair Salon, Northfield, Birmingham</title>
 <meta name="description" content="Independent hair salon in Northfield, Birmingham. Cuts, colour and styling for everyone at Denada's D&amp;D Hairsalon. Book your appointment today." />
 <link rel="canonical" href="https://desolatemartial553.github.io/dd-hairsalon/" />
@@ -265,6 +266,8 @@
     .brand{font-size:22px;}
   }
   footer a[href="privacy.html"]{text-decoration:underline; text-underline-offset:3px;}
+  /* Former inline style attributes (moved here for a stricter CSP) */
+  .u-s1{margin-bottom:0 !important;}
 </style>
 </head>
 <body>
@@ -362,7 +365,7 @@
     <div class="gallery-head reveal">
       <div>
         <p class="eyebrow">The space</p>
-        <h2 class="section__title" style="margin-bottom:0;">A Proper <em>Pamper</em></h2>
+        <h2 class="section__title u-s1">A Proper <em>Pamper</em></h2>
       </div>
       <p class="lede">A relaxed, bright space where nobody is hurried out of the chair.</p>
     </div>
@@ -456,7 +459,7 @@
     <div class="contact-head reveal">
       <div>
         <p class="eyebrow">Find your appointment</p>
-        <h2 class="section__title" style="margin-bottom:0;">Contact <em>&amp;</em> Booking</h2>
+        <h2 class="section__title u-s1">Contact <em>&amp;</em> Booking</h2>
       </div>
       <p class="lede">Book your appointment at Denada's D&amp;D Hairsalon in Northfield.</p>
     </div>
